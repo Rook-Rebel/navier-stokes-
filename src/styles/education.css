@@ -1,0 +1,454 @@
+/* ---------- Equation section ---------- */
+
+.equation-block {
+  padding: 64px 36px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+  background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(79, 168, 219, 0.06), transparent 70%), var(--bg-glass);
+}
+
+.equation-term {
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.equation-term:hover,
+.equation-term.active {
+  background: rgba(79, 179, 255, 0.18);
+}
+
+.equation-term-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.equation-term-card {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-faint);
+  background: var(--bg-panel);
+  text-align: left;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.equation-term-card:hover,
+.equation-term-card.active {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.equation-term-card-symbol {
+  font-family: var(--font-mono);
+  color: var(--text-accent);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.equation-term-card-label {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.equation-term-card-note {
+  font-size: 0.74rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+/* ---------- Model description ---------- */
+
+.model-doc-heading {
+  font-size: 1.05rem;
+  margin: 28px 0 12px;
+  color: var(--text-primary);
+}
+
+.model-doc-heading:first-child {
+  margin-top: 0;
+}
+
+.katex-block {
+  overflow-x: auto;
+  padding: 10px 4px;
+  margin-bottom: 6px;
+}
+
+/* ---------- Equation inspector term status ---------- */
+
+.term-status-badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-top: 8px;
+  border: 1px solid var(--border-soft);
+  color: var(--text-secondary);
+}
+
+.term-status-badge.status-modeled {
+  color: var(--accent-ok);
+  border-color: rgba(58, 160, 140, 0.4);
+}
+
+.term-status-badge.status-simplified {
+  color: var(--accent-warm);
+  border-color: rgba(201, 138, 74, 0.4);
+}
+
+.term-status-badge.status-visual {
+  color: var(--text-tertiary);
+  border-color: var(--border-soft);
+}
+
+/* ---------- Assumptions ---------- */
+
+.assumptions-list {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.assumptions-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.assumptions-list li::before {
+  content: '—';
+  color: var(--accent-warm);
+  flex-shrink: 0;
+}
+
+/* ---------- Step-by-step ---------- */
+
+.step-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+}
+
+.step-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-faint);
+  background: var(--bg-panel);
+  color: var(--text-tertiary);
+  font-size: 0.82rem;
+}
+
+.step-nav-btn .num {
+  font-family: var(--font-cinema);
+  font-size: 0.9rem;
+}
+
+.step-nav-btn.active {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+  background: rgba(79, 179, 255, 0.1);
+}
+
+.step-nav-btn.done .num {
+  color: var(--accent-ok);
+}
+
+.step-stage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .step-stage {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step-stage-number {
+  font-family: var(--font-cinema);
+  font-size: 3.6rem;
+  color: var(--accent-primary);
+  opacity: 0.55;
+  line-height: 1;
+}
+
+.step-stage-title {
+  font-size: 1.6rem;
+  margin: 6px 0 14px;
+}
+
+.step-stage-text {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+.step-stage-canvas {
+  height: 360px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-faint);
+  background: var(--bg-void);
+}
+
+.step-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+/* ---------- Why difficult ---------- */
+
+.difficulty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.difficulty-card {
+  padding: 22px;
+  transition: border-color 0.15s ease;
+}
+
+.difficulty-card:hover {
+  border-color: var(--border-strong);
+}
+
+.difficulty-card-title {
+  font-family: var(--font-cinema);
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  color: var(--accent-warm);
+}
+
+.difficulty-card-text {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.92rem;
+}
+
+/* ---------- Comparison sections ---------- */
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border-faint);
+  border: 1px solid var(--border-faint);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 28px;
+}
+
+@media (max-width: 860px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comparison-col {
+  background: var(--bg-panel);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comparison-col-title {
+  font-family: var(--font-cinema);
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.comparison-col-viz {
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-faint);
+  background: var(--bg-void);
+}
+
+.comparison-col-text {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.comparison-explainer {
+  margin-top: 20px;
+  padding: 18px 20px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+/* ---------- Energy explanation ---------- */
+
+.energy-analogy-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+  margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .energy-analogy-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+.energy-caption {
+  margin-top: 14px;
+  font-size: 0.86rem;
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* ---------- Scientific status ---------- */
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.status-card {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.status-badge.done {
+  color: #0d3b2b;
+  background: var(--accent-ok);
+}
+
+.status-badge.pending {
+  color: #4a3607;
+  background: var(--accent-warm);
+}
+
+.status-badge.not-yet {
+  color: #4a1414;
+  background: #d97878;
+}
+
+.status-card-title {
+  font-family: var(--font-cinema);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+/* ---------- Sources ---------- */
+
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.source-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.source-category-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  color: var(--text-secondary);
+}
+
+.source-category-badge.source-category-primary {
+  color: var(--accent-primary);
+  border-color: rgba(79, 168, 219, 0.4);
+}
+
+.source-category-badge.source-category-formalization {
+  color: var(--accent-ok);
+  border-color: rgba(58, 160, 140, 0.4);
+}
+
+.source-category-badge.source-category-official-problem {
+  color: var(--accent-warm);
+  border-color: rgba(201, 138, 74, 0.4);
+}
+
+.source-org {
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+}
+
+.source-title {
+  font-family: var(--font-cinema);
+  font-size: 1.02rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.source-date {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+.source-desc {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* ---------- Disclaimer ---------- */
+
+.disclaimer-hero {
+  max-width: 720px;
+  margin: 22px auto 0;
+}

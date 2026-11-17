@@ -1,0 +1,277 @@
+@import './fonts.css';
+
+:root {
+  color-scheme: dark;
+
+  /* --- base atmosphere: deep-space graphite/blue-black, no pure #000 --- */
+  --bg-void: #020305;
+  --bg-deep: #04070b;
+  --bg-panel: #090d16;
+  --bg-panel-raised: #0c111d;
+  --bg-glass: rgba(11, 16, 26, 0.6);
+  --bg-glass-strong: rgba(9, 13, 22, 0.82);
+  --border-faint: rgba(148, 178, 214, 0.1);
+  --border-soft: rgba(148, 178, 214, 0.18);
+  --border-strong: rgba(148, 178, 214, 0.32);
+
+  /* --- atmosphere blue --- */
+  --blue-deep: #0a1730;
+  --blue-mid: #12253e;
+  --blue-glow: #2a659e;
+
+  /* --- restrained scientific gradient (see utils/colorScale.ts for the canonical version used in-scene) --- */
+  --teal-slow: #3a9a95;
+  --teal-slow-dim: #163a38;
+  --amber-fast: #d99a3e;
+  --amber-fast-hot: #e8b06a;
+  --white-trace: #eef2f5;
+
+  /* --- text --- */
+  --text-primary: #e9eef7;
+  --text-secondary: #9fadc2;
+  --text-tertiary: #64728a;
+  --text-accent: #7ec8dd;
+
+  /* --- accents --- */
+  --accent-primary: #4fa8db;
+  --accent-warm: #c98a4a;
+  --accent-danger: #c96a5d;
+  --accent-ok: #3aa08c;
+
+  /* --- fonts: see fonts.css for the --font-cinema / --font-body definitions --- */
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  --shadow-panel: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(ellipse 120% 80% at 50% -10%, var(--blue-deep) 0%, var(--bg-void) 55%),
+    var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/*
+  Typography hierarchy (two tiers only — did.ttf is fully retired):
+    44 (--font-cinema) -> h1, h2, h3, .font-cinema — hero title, all section
+                          headings, panel/graph titles, stage numbers, major
+                          values, experiment names, report headings.
+    lit (--font-body)   -> everything else (default on body).
+*/
+h1,
+h2,
+h3,
+.font-cinema {
+  font-family: var(--font-cinema);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+p,
+span,
+button,
+input,
+label,
+li,
+td,
+th {
+  font-family: var(--font-body);
+}
+
+a {
+  color: var(--accent-primary);
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--accent-primary);
+  color: #041018;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 8px;
+}
+
+.glass-panel {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-faint);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: var(--shadow-panel);
+}
+
+.eyebrow-label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+.section {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 96px 32px;
+}
+
+.section-heading {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.section-sub {
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  max-width: 780px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+  background: var(--bg-panel-raised);
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  border-color: var(--accent-primary);
+  background: #101a2c;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-primary), #2f7fd6);
+  border-color: transparent;
+  color: #04101d;
+  font-family: var(--font-cinema);
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+  background: linear-gradient(135deg, var(--accent-primary), #2f7fd6);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border-faint);
+  color: var(--text-secondary);
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.btn.active {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: rgba(79, 179, 255, 0.1);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-sm {
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tooltip-term {
+  border-bottom: 1px dotted var(--text-accent);
+  cursor: help;
+  position: relative;
+  color: inherit;
+}
+
+.disclaimer-banner {
+  background: linear-gradient(90deg, rgba(245, 165, 36, 0.12), rgba(245, 165, 36, 0.04));
+  border: 1px solid rgba(245, 165, 36, 0.35);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  color: #f3d9a8;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 860px) {
+  .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  .section {
+    padding: 56px 18px;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.katex {
+  font-size: 1.15em;
+}

@@ -1,0 +1,34 @@
+/*
+  Custom Georgian typefaces — two-tier hierarchy (did.ttf is fully retired,
+  do not reintroduce it anywhere).
+  "44.otf"  -> DISPLAY family. Hero title, h1/h2/h3, section headings, panel
+               titles, graph titles, important buttons, stage numbers, major
+               values (T - t), experiment names, report section headings.
+  "lit.otf" -> BODY/UI family. Everything else: paragraphs, controls,
+               tooltips, data labels, navigation, small text.
+  Both files live in /public/fonts and are referenced by their real
+  extensions. Do not substitute a Google Font: if these files are ever
+  missing, the system-ui fallback stack below is used only as an emergency
+  fallback.
+*/
+
+@font-face {
+  font-family: 'NVSCinema';
+  src: url('/fonts/44.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NVSBody';
+  src: url('/fonts/lit.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-cinema: 'NVSCinema', 'BPG Nino Mtavruli', 'Sylfaen', system-ui, sans-serif;
+  --font-body: 'NVSBody', 'BPG Nino', 'Sylfaen', system-ui, sans-serif;
+}

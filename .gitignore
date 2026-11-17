@@ -1,0 +1,15 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+
+# local tool settings
+.claude/
+
+# original font copies in the project root (the app loads them from public/fonts)
+/44.otf
+/lit.otf
+/did.ttf
+# no longer used by the app
+/public/fonts/did.ttf
